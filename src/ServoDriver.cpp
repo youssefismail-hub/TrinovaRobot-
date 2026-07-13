@@ -6,7 +6,7 @@ ServoDriver::ServoDriver() {}
 bool ServoDriver::begin(const RobotConfig& config) {
     _config = config;
 
-    Serial.println("[ServoDriver] Initialisation OK (stub)");
+    Serial.println("[Servo Driver] Initialisation OK (stub)");
     return true;
 }
 
@@ -19,21 +19,21 @@ void ServoDriver::stop() {}
 bool ServoDriver::moveServo(uint8_t channel, uint8_t angle, uint16_t durationMs) {
     if (_emergencyActive) return false;
 
-    Serial.printf("[ServoDriver] MOVE channel=%d angle=%d duration=%d\n",
+    Serial.printf("[Servo Driver] MOVE channel=%d angle=%d duration=%d\n",
                   channel, angle, durationMs);
     return true;
 }
 
 void ServoDriver::emergencyStop() {
     _emergencyActive = true;
-    Serial.println("[ServoDriver] EMERGENCY STOP");
+    Serial.println("[Servo Driver] EMERGENCY STOP");
 }
 
 void ServoDriver::clearEmergencyStop() {
     _emergencyActive = false;
-    Serial.println("[ServoDriver] EMERGENCY CLEARED");
+    Serial.println("[Servo Driver] EMERGENCY CLEARED");
 }
 
 void ServoDriver::update() {
-    // Interpolation future ici
+    
 }
