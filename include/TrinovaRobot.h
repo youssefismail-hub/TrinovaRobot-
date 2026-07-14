@@ -3,6 +3,7 @@
 
 #include "RobotTypes.h"
 #include "IRobotDriver.h"
+#include "MotionSafety.h"
 
 class TrinovaRobot {
 public:
@@ -34,6 +35,8 @@ private:
     IRobotDriver* _driver = nullptr;
 
     uint32_t _lastCommandTime = 0;
+    
+    MotionSafety* _safety = nullptr; 
 
     uint8_t clampSpeed(uint8_t speed);
     void checkTimeout();
