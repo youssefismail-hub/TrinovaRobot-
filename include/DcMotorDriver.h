@@ -25,6 +25,20 @@ public:
 private:
     RobotConfig _config;
     bool _emergencyActive = false;
+
+    // Pins moteurs 
+    int _dir1L = 5;
+    int _dir2L = 6;
+    int _pwmL  = 9;
+
+    int _dir1R = 7;
+    int _dir2R = 8;
+    int _pwmR  = 10;
+
+    void setMotorLeft(bool forward, uint8_t speed);
+    void setMotorRight(bool forward, uint8_t speed);
+
+    uint8_t speedToPwm(uint8_t speed);
 };
 
 #endif
