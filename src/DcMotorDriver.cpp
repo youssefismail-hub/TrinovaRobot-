@@ -74,6 +74,15 @@ void DcMotorDriver::turnRight(uint8_t speed) {
 
 void DcMotorDriver::stop() {
 
+
+    if (_brakeMode) {
+        //  Freinage actif 
+        digitalWrite(_dir1L, HIGH);
+        digitalWrite(_dir2L, HIGH);
+        digitalWrite(_dir1R, HIGH);
+        digitalWrite(_dir2R, HIGH);
+    }
+
     analogWrite(_pwmL, 0);
     analogWrite(_pwmR, 0);
 }

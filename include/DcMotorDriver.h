@@ -25,7 +25,7 @@ public:
 private:
     RobotConfig _config;
     bool _emergencyActive = false;
-
+    bool _brakeMode = true; 
     // Pins moteurs 
     int _dir1L = 5;
     int _dir2L = 6;
