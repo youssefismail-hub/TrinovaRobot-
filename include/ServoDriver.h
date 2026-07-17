@@ -2,7 +2,7 @@
 #define TRINOVA_SERVO_DRIVER_H
 
 #include "IRobotDriver.h"
-
+#include "Pca9685Driver.h"
 
 class ServoDriver : public IRobotDriver {
 public:
@@ -26,6 +26,7 @@ public:
 private:
     RobotConfig _config;
     bool _emergencyActive = false;
+    Pca9685Driver _pca; 
 };
 
 #endif

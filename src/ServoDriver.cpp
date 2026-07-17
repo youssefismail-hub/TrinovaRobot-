@@ -1,37 +1,45 @@
 #include "ServoDriver.h"
 #include <Arduino.h>
 
-ServoDriver::ServoDriver() {}
+ServoDriver::ServoDriver() : _pca(0x40) {}
 
 bool ServoDriver::begin(const RobotConfig& config) {
+
     _config = config;
 
-    Serial.println("[Servo Driver] Initialisation OK (stub)");
+    if (!_pca.begin(50)) { // 50Hz pour servo
+        return false;  // erreur ServoDriverError
+    }
+
+    Serial.println("[ServoDriver] PCA9685 initialized");
     return true;
 }
 
-void ServoDriver::forward(uint8_t) {}
-void ServoDriver::backward(uint8_t) {}
-void ServoDriver::turnLeft(uint8_t) {}
-void ServoDriver::turnRight(uint8_t) {}
-void ServoDriver::stop() {}
+bool ServoDriver::moveServo(uint8_t channel, uint8_t angle, uint16_t) {
 
-bool ServoDriver::moveServo(uint8_t channel, uint8_t angle, uint16_t durationMs) {
-    if (_emergencyActive) return false;
+    if (_emergencyActive)
+        return false;
 
-    Serial.printf("[Servo Driver] MOVE channel=%d angle=%d duration=%d\n",
-                  channel, angle, durationMs);
+    if (channel > 15)
+        return false;
+
+    // Conversion angle -> PWM
+    uint16_t pulseMin = 150;   
+    uint16_t pulseMax = 600;
+
+    uint16_t pulse = map(angle, 0, 180, pulseMin, pulseMax);
+
+    _pca.setPWM(channel, 0, pulse);
+
     return true;
 }
 
 void ServoDriver::emergencyStop() {
     _emergencyActive = true;
-    Serial.println("[Servo Driver] EMERGENCY STOP");
 }
 
 void ServoDriver::clearEmergencyStop() {
     _emergencyActive = false;
-    Serial.println("[Servo Driver] EMERGENCY CLEARED");
 }
 
 void ServoDriver::update() {
