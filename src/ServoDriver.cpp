@@ -11,27 +11,49 @@ bool ServoDriver::begin(const RobotConfig& config) {
         return false;  // erreur ServoDriverError
     }
 
-    Serial.println("[ServoDriver] PCA9685 initialized");
+    // Position neutre : 
+    for (int i = 0; i < MAX_SERVOS; i++) {
+        writeAngle(i, 90);
+        _servos[i].currentAngle = 90;
+    }
+
+
+    Serial.println("ServoDriver PCA9685 initialized with interpolation ");
     return true;
 }
 
-bool ServoDriver::moveServo(uint8_t channel, uint8_t angle, uint16_t) {
+bool ServoDriver::moveServo(uint8_t channel, uint8_t angle,uint16_t durationMs) {
 
     if (_emergencyActive)
         return false;
 
-    if (channel > 15)
+    if (channel >= MAX_SERVOS)
         return false;
 
-    // Conversion angle -> PWM
-    uint16_t pulseMin = 150;   
+
+    if (durationMs == 0) {
+        writeAngle(channel, angle);
+        _servos[channel].currentAngle = angle;
+        return true;
+    }
+
+    _servos[channel].targetAngle = angle;
+    _servos[channel].startTime = millis();
+    _servos[channel].duration = durationMs;
+    _servos[channel].moving = true;
+
+    return true;
+}
+
+
+void ServoDriver::writeAngle(uint8_t channel, uint8_t angle) {
+
+    uint16_t pulseMin = 150;
     uint16_t pulseMax = 600;
 
     uint16_t pulse = map(angle, 0, 180, pulseMin, pulseMax);
 
     _pca.setPWM(channel, 0, pulse);
-
-    return true;
 }
 
 void ServoDriver::emergencyStop() {
@@ -43,5 +65,32 @@ void ServoDriver::clearEmergencyStop() {
 }
 
 void ServoDriver::update() {
+    
+    if (_emergencyActive)
+        return;
+
+    uint32_t now = millis();
+
+    for (int i = 0; i < MAX_SERVOS; i++) {
+
+        if (!_servos[i].moving)
+            continue;
+
+        uint32_t elapsed = now - _servos[i].startTime;
+
+        if (elapsed >= _servos[i].duration) {
+            writeAngle(i, _servos[i].targetAngle);
+            _servos[i].currentAngle = _servos[i].targetAngle;
+            _servos[i].moving = false;
+            continue;
+        }
+
+        float progress = (float)elapsed / _servos[i].duration;
+
+        int newAngle = _servos[i].currentAngle +
+            (int)((_servos[i].targetAngle - _servos[i].currentAngle) * progress);
+
+        writeAngle(i, newAngle);
+    }
     
 }
