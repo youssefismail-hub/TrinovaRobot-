@@ -137,7 +137,7 @@ bool TrinovaRobot::moveServo(uint8_t channel, uint8_t angle, uint16_t durationMs
     if (!_driver || !_safety)
         return false;
 
-    //  R1.8 Limites mécaniques
+    //  R1.8 : Limites mécaniques
     angle = _safety->clampServoAngle(angle);
 
     bool result = _driver->moveServo(channel, angle, durationMs);
