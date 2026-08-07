@@ -70,7 +70,7 @@ Chaque moteur possède :
 
 ###  Affectation des pins ESP32-S3
 
-| Signal | ESP32 Pin |
+| Signal | ESP32-S3 Pin |
 |--------|-----------|
 | DIR1_L | 5 |
 | DIR2_L | 6 |
@@ -79,7 +79,7 @@ Chaque moteur possède :
 | DIR2_R | 8 |
 | PWM_R  | 10 |
 
- Les numéros de pins doivent être adaptés selon votre carte ESP32-S3.
+
 
 ---
 
