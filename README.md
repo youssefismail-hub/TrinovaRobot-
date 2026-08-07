@@ -151,7 +151,7 @@ Le projet contient trois exemples compilables :
 - Test avant / arrière
 - Test rotation gauche / droite
 - Test stop et freinage
-- Validation comportement section 9 CDC
+
 
 ## 3️ 03_ServoControl
 
