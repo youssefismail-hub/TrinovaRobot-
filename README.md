@@ -180,3 +180,10 @@ Environnement cible :
 - ESP32-S3
 - PlatformIO
 - Framework Arduino-ESP32
+
+
+---
+
+# 🏷️ Version
+
+Version  : **v1.0.0** 
