@@ -64,6 +64,15 @@ void ServoDriver::clearEmergencyStop() {
     _emergencyActive = false;
 }
 
+void ServoDriver::forward(uint8_t speed) {}
+void ServoDriver::backward(uint8_t speed) {}
+void ServoDriver::turnLeft(uint8_t speed) {}
+void ServoDriver::turnRight(uint8_t speed) {}
+void ServoDriver::stop() {}
+
+
+
+
 void ServoDriver::update() {
     
     if (_emergencyActive)
