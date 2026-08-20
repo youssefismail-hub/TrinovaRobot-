@@ -187,3 +187,7 @@ Environnement cible :
 # 🏷️ Version
 
 Version  : **v1.0.0** 
+
+Projet  réalisé dans le cadre de :
+
+**TrinovaTech – AI Robotics Core V1 – 2026**
