@@ -1,5 +1,30 @@
 # TrinovaRobot
 
+<p align="center">
+  <a href="https://github.com/youssefismail-hub/TrinovaRobot-">
+    <img src="https://img.shields.io/badge/GitHub-TrinovaRobot--black?logo=github" alt="GitHub repository">
+  </a>
+  <a href="https://github.com/youssefismail-hub/TrinovaRobot-/stargazers">
+    <img src="https://img.shields.io/github/stars/youssefismail-hub/TrinovaRobot-?style=social" alt="GitHub stars">
+  </a>
+  <a href="https://github.com/youssefismail-hub/TrinovaRobot-/network/members">
+    <img src="https://img.shields.io/github/forks/youssefismail-hub/TrinovaRobot-?style=social" alt="GitHub forks">
+  </a>
+  <a href="https://github.com/youssefismail-hub/TrinovaRobot-/issues">
+    <img src="https://img.shields.io/github/issues/youssefismail-hub/TrinovaRobot-" alt="GitHub issues">
+  </a>
+  <a href="https://github.com/youssefismail-hub/TrinovaRobot-/commits/main">
+    <img src="https://img.shields.io/github/last-commit/youssefismail-hub/TrinovaRobot-" alt="Last commit">
+  </a>
+  <a href="https://github.com/youssefismail-hub/TrinovaRobot-">
+    <img src="https://img.shields.io/github/repo-size/youssefismail-hub/TrinovaRobot-" alt="Repository size">
+  </a>
+  <img src="https://img.shields.io/badge/Language-C%2B%2B-blue?logo=c%2B%2B" alt="C++">
+  <a href="https://platformio.org/">
+    <img src="https://img.shields.io/badge/PlatformIO-ESP32--S3-orange?logo=platformio" alt="PlatformIO ESP32-S3">
+  </a>
+</p>
+
 Bibliothèque C++ modulaire pour ESP32-S3, développée dans le cadre du programme **TrinovaTech – AI Robotics Core V1 (2026)**. Le projet fournit une API pour piloter des moteurs DC ou des servomoteurs via un PCA9685, ainsi qu’un mode Mock pour tester sans matériel.
 
 > **État du projet :** la configuration PlatformIO cible `esp32-s3-devkitc-1` avec le framework Arduino. Les exemples sont fournis dans `examples/`, mais PlatformIO compile par défaut les fichiers placés dans `src/`. Voir [Compiler et téléverser](#compiler-et-téléverser) pour utiliser un exemple.
